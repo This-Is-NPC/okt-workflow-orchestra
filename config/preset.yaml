@@ -1,0 +1,9 @@
+version: 1
+kit: {id: 105, key: orchestra, name: Orchestra Workflow Preset}
+config: {from: ./settings.yaml}
+workflows: {from: ./workflows.yaml}
+surfaces: {from: ./surfaces.yaml}
+skills: {from: ./catalog.yaml#skills}
+laws: {from: ./catalog.yaml#laws}
+personas: {from: ./personas.yaml}
+commands: {from: ./bindings.yaml}

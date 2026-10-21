@@ -1,0 +1,12 @@
+board:
+  sort: {field: created_at, order: desc}
+table:
+  sort: {field: created_at, order: desc}
+graph:
+  sort: {field: id, order: asc}
+logs:
+  sort: {order: desc}
+  limit: 50
+  window_days: 30
+task_activity:
+  sort: {order: asc}

@@ -1,0 +1,68 @@
+- slug: shikamaru-nara
+  schema_version: 2
+  skill_repertoire:
+    - okt-config
+    - okt-help
+    - okt-note-free
+    - okt-note-list
+    - okt-note-recap
+    - okt-note-show
+    - okt-pause
+    - okt-project-continue
+    - okt-project-resume
+    - okt-reflect
+    - okt-skill
+    - okt-start
+    - okt-task-debrief
+    - okt-task-document
+  laws: []
+- slug: third-hokage
+  schema_version: 2
+  skill_repertoire:
+    - okt-plan-claim
+    - okt-plan-continue
+    - okt-plan-create
+    - okt-plan-show
+    - okt-run
+    - okt-shape
+    - okt-task-create
+    - okt-task-decompose
+    - okt-task-estimate
+    - okt-task-prioritize
+    - okt-task-requirements
+  laws: [okt-workflow]
+- slug: konohamaru-class
+  schema_version: 2
+  skill_repertoire:
+    - okt-task-imagine
+    - okt-task-research
+    - okt-task-validate
+  laws: []
+- slug: naruto-uzumaki
+  schema_version: 2
+  skill_repertoire:
+    - okt-task-continue
+    - okt-task-design
+    - okt-task-implement
+    - okt-task-refactor
+    - okt-task-resume
+    - okt-task-self-review
+  laws: [okt-workflow]
+- slug: sakura-haruno
+  schema_version: 2
+  skill_repertoire:
+    - okt-task-check
+    - okt-task-quality
+  laws: [okt-workflow]
+- slug: kakashi-hatake
+  schema_version: 2
+  skill_repertoire:
+    - okt-task-review
+    - okt-task-secure
+    - okt-audit
+  laws: []
+- slug: iruka-umino
+  schema_version: 2
+  skill_repertoire:
+    - okt-task-commit
+  laws: []

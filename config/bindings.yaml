@@ -1,0 +1,162 @@
+global:
+  laws: [agent-contract, template-fidelity, authorize-remote-writes]
+okt-audit:
+  persona: kakashi-hatake
+  laws: [findings-actionable, design-principles, attack-the-premise, test-evidence]
+  templates: [comment-audit]
+  skills: [okt-audit]
+okt-config:
+  persona: shikamaru-nara
+  templates: [config-orientation]
+  skills: [okt-config]
+okt-help:
+  persona: shikamaru-nara
+  skills: [okt-help]
+okt-note-free:
+  persona: shikamaru-nara
+  templates: [note-free]
+  skills: [okt-note-free]
+okt-note-list:
+  persona: shikamaru-nara
+  skills: [okt-note-list]
+okt-note-recap:
+  persona: shikamaru-nara
+  templates: [note-recap, note-standup-digest]
+  skills: [okt-note-recap]
+okt-note-show:
+  persona: shikamaru-nara
+  skills: [okt-note-show]
+okt-pause:
+  persona: shikamaru-nara
+  laws: [no-praise-pad]
+  templates: [note-handoff]
+  skills: [okt-pause]
+okt-plan-claim:
+  persona: third-hokage
+  skills: [okt-plan-claim]
+okt-plan-continue:
+  persona: third-hokage
+  skills: [okt-plan-continue]
+okt-plan-create:
+  persona: third-hokage
+  skills: [okt-plan-create]
+okt-plan-show:
+  persona: third-hokage
+  skills: [okt-plan-show]
+okt-project-continue:
+  persona: shikamaru-nara
+  skills: [okt-project-continue]
+okt-project-resume:
+  persona: shikamaru-nara
+  skills: [okt-project-resume]
+okt-reflect:
+  persona: shikamaru-nara
+  skills: [okt-reflect]
+okt-run:
+  persona: third-hokage
+  skills: [okt-run]
+okt-shape:
+  persona: third-hokage
+  laws: [feasibility-gate, smart-success]
+  skills: [okt-shape]
+okt-skill:
+  persona: shikamaru-nara
+  skills: [okt-skill]
+okt-start:
+  persona: shikamaru-nara
+  skills: [okt-start]
+okt-task-check:
+  persona: sakura-haruno
+  laws: [findings-actionable, attack-the-premise]
+  templates: [comment-check-report]
+  skills: [okt-task-check]
+okt-task-commit:
+  persona: iruka-umino
+  laws: [conventional-commits]
+  skills: [okt-task-commit]
+okt-task-continue:
+  persona: naruto-uzumaki
+  skills: [okt-task-continue]
+okt-task-create:
+  persona: third-hokage
+  laws: [feasibility-gate, smart-success, invest-stories, outcome-over-output]
+  templates: [user-story, task-bugfix, comment-smart-success, comment-moscow]
+  skills: [okt-task-create]
+okt-task-debrief:
+  persona: shikamaru-nara
+  laws: [no-praise-pad]
+  skills: [okt-task-debrief]
+okt-task-decompose:
+  persona: third-hokage
+  skills: [okt-task-decompose]
+okt-task-design:
+  persona: naruto-uzumaki
+  laws: [design-principles]
+  skills: [okt-task-design]
+okt-task-document:
+  persona: shikamaru-nara
+  skills: [okt-task-document]
+okt-task-estimate:
+  persona: third-hokage
+  skills: [okt-task-estimate]
+okt-task-imagine:
+  persona: konohamaru-class
+  laws_disabled: [template-fidelity]
+  templates: [comment-5w2h, comment-smart-success]
+  skills: [okt-task-imagine]
+okt-task-implement:
+  persona: naruto-uzumaki
+  laws:
+    - bounded-self-review
+    - test-evidence
+    - conventional-commits
+    - self-report
+    - small-batches
+    - design-principles
+    - attack-the-premise
+  templates: [pull-request, comment-tests-passing, comment-refactor-drive-by]
+  skills: [okt-task-implement]
+okt-task-prioritize:
+  persona: third-hokage
+  templates: [comment-moscow]
+  skills: [okt-task-prioritize]
+okt-task-quality:
+  persona: sakura-haruno
+  laws: [findings-actionable]
+  templates: [comment-review-findings]
+  skills: [okt-task-quality]
+okt-task-refactor:
+  persona: naruto-uzumaki
+  laws: [test-evidence, small-batches]
+  templates: [comment-refactor-opportunities]
+  skills: [okt-task-refactor]
+okt-task-requirements:
+  persona: third-hokage
+  skills: [okt-task-requirements]
+okt-task-research:
+  persona: konohamaru-class
+  laws: [attack-the-premise]
+  laws_disabled: [template-fidelity]
+  skills: [okt-task-research]
+okt-task-resume:
+  persona: naruto-uzumaki
+  skills: [okt-task-resume]
+okt-task-review:
+  persona: kakashi-hatake
+  laws: [findings-actionable, no-praise-pad, design-principles]
+  templates: [comment-review-findings, comment-refactor-opportunities]
+  skills: [okt-task-review]
+okt-task-secure:
+  persona: kakashi-hatake
+  laws: [findings-actionable]
+  templates: [comment-review-findings]
+  skills: [okt-task-secure]
+okt-task-self-review:
+  persona: naruto-uzumaki
+  laws: [bounded-self-review]
+  templates: [comment-refactor-drive-by]
+  skills: [okt-task-self-review]
+okt-task-validate:
+  persona: konohamaru-class
+  laws_disabled: [template-fidelity]
+  skills: [okt-task-validate]

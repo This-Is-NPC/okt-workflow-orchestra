@@ -1,0 +1,6 @@
+schema_version: 1
+name: orchestra
+version: 0.1.0
+config: config/preset.yaml
+requires:
+  okt: 0.37.0

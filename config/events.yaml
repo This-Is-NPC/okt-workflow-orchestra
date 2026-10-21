@@ -1,0 +1,106 @@
+retention:
+  defaults: {max_age_days: 0, max_rows: 0}
+orphan_sweep:
+  enabled: true
+  interval_minutes: 1440
+  retry_interval_minutes: 60
+  batch_rows: 100
+  max_rows_per_pass: 500
+  max_duration_ms: 50
+default_recent_limit: 50
+defaults: {log: true, broadcast: true, hook: true, log_visible: true}
+overrides:
+  tag.added: {log: false}
+  tag.removed: {log: false}
+definitions:
+  agent.session_finished: {category: task, display: agent session finished, formatter: agent.session_finished}
+  agent.session_started: {category: task, display: agent session started, formatter: agent.session_started}
+  bundle.imported: {category: domain, display: bundle imported, formatter: bundle.imported}
+  bundle.swapped: {category: domain, display: bundle swapped, formatter: bundle.swapped}
+  cli.tool_call: {category: tool_call, display: CLI tool call, formatter: cli.tool_call}
+  comment: {category: comment, display: comment added, formatter: comment}
+  comment.edited: {category: comment, display: comment edited, formatter: comment.edited}
+  comment.removed: {category: comment, display: comment removed, formatter: comment.removed}
+  confirmation.granted: {category: audit, display: confirmation granted, formatter: confirmation.granted}
+  dependency.added: {category: tag-dep, display: dependency added, formatter: dependency.added}
+  dependency.removed: {category: tag-dep, display: dependency removed, formatter: dependency.removed}
+  error.recorded:
+    category: audit
+    display: error recorded
+    entity_type: error
+    metric: error_recorded
+    formatter: error.recorded
+  errors.researched:
+    category: audit
+    display: errors researched
+    entity_type: search
+    metric: error_searched
+    formatter: errors.researched
+  guard.violated: {category: guard, display: guard violated, formatter: guard.violated}
+  hook.executed: {category: hook, display: hook executed, formatter: hook.executed}
+  notification.shown: {category: hook, display: notification shown, formatter: notification.shown}
+  plan.abandoned: {category: plan, display: plan abandoned, formatter: plan.abandoned}
+  plan.created: {category: plan, display: plan created, formatter: plan.created}
+  plan.deleted: {category: plan, display: plan deleted, formatter: plan.deleted}
+  plan.done: {category: plan, display: plan done, formatter: plan.done}
+  plan.edited: {category: plan, display: plan edited, formatter: plan.edited}
+  plan.goal_edited: {category: plan, display: plan goal edited, formatter: plan.goal_edited}
+  plan.task_unassigned: {category: plan, display: plan task unassigned, formatter: plan.task_unassigned}
+  plan.wave_added: {category: plan, display: plan wave added, formatter: plan.wave_added}
+  plan.wave_removed: {category: plan, display: plan wave removed, formatter: plan.wave_removed}
+  plan.wave_renamed: {category: plan, display: plan wave renamed, formatter: plan.wave_renamed}
+  plan.wave_reordered: {category: plan, display: plan wave reordered, formatter: plan.wave_reordered}
+  project.removed: {category: audit, display: project removed, formatter: project.removed}
+  project.updated: {category: audit, display: project updated, formatter: project.updated}
+  solution.added:
+    category: audit
+    display: solution added
+    entity_type: solution
+    metric: solution_added
+    formatter: solution.added
+  solution.confirmed:
+    category: audit
+    display: solution confirmed
+    entity_type: solution
+    formatter: solution.confirmed
+  solution.failed:
+    category: audit
+    display: solution failed
+    entity_type: solution
+    metric: solution_failed
+    formatter: solution.failed
+  solution.liked:
+    category: audit
+    display: solution liked
+    entity_type: solution
+    metric: solution_liked
+    formatter: solution.liked
+  solution.viewed_top:
+    category: audit
+    display: solution viewed top
+    entity_type: solution
+    metric: solution_top_viewed
+    formatter: solution.viewed_top
+  subtask_kit.notice_emitted: {category: domain, display: subtask kit notice emitted, formatter: subtask_kit.notice_emitted}
+  tag.added: {category: tag-dep, display: tag added, formatter: tag.added}
+  tag.removed: {category: tag-dep, display: tag removed, formatter: tag.removed}
+  task.archived: {category: task, display: task archived, formatter: task.archived}
+  task.assigned: {category: task, display: task assigned, formatter: task.assigned}
+  task.bucket_orphaned: {category: task, display: task bucket orphaned, formatter: task.bucket_orphaned}
+  task.completed: {category: task, display: task completed, formatter: task.completed}
+  task.created: {category: task, display: task created, formatter: task.created}
+  task.edited: {category: task, display: task edited, formatter: task.edited}
+  task.migrated: {category: task, display: task migrated, formatter: task.migrated}
+  task.moved: {category: task, display: task moved, formatter: task.moved}
+  task.removed: {category: task, display: task removed, formatter: task.removed}
+  task.unarchived: {category: task, display: task unarchived, formatter: task.unarchived}
+  task.unassigned: {category: task, display: task unassigned, formatter: task.unassigned}
+  team.closed: {category: task, display: agent team closed, formatter: team.closed}
+  team.finished: {category: task, display: agent team finished, formatter: team.finished}
+  trick.executed: {category: trick, display: trick executed, formatter: trick.executed}
+  tui.healthcheck.failed: {category: tui, display: tui boot health-check failed, formatter: tui.healthcheck.failed}
+  tui.tool_call: {category: tool_call, display: TUI tool call, formatter: tui.tool_call}
+  update.healthcheck.failed: {category: update, display: update health-check failed, formatter: update.healthcheck.failed}
+  update.healthcheck.passed: {category: update, display: update health-check passed, formatter: update.healthcheck.passed}
+  update.swap.aborted: {category: update, display: update binary swap aborted, formatter: update.swap.aborted}
+  update.swap.completed: {category: update, display: update binary swap completed, formatter: update.swap.completed}

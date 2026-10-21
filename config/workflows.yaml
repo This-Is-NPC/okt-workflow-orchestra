@@ -1,0 +1,137 @@
+- id: 1
+  key: orchestra
+  name: Orchestra Workflow
+  buckets:
+    - id: 1
+      key: backlog
+      name: Backlog
+      position: 1
+      permissions:
+        task:
+          edit: {allow: true}
+          delete: {allow: true}
+        comment:
+          edit: {allow: true}
+          delete: {allow: true}
+    - id: 2
+      key: dev
+      name: Development
+      position: 2
+      agents:
+        trigger: auto
+        lead: {persona: naruto-uzumaki, command: okt-task-implement, brief: "If the task came back from review, read the latest review-lead findings first and fix every blocking one. Implement and commit on the task branch, post resume and tests-passing, then move the task to review (okt move <id> --to review)."}
+      permissions:
+        comment:
+          edit: {allow: true}
+          delete: {allow: true}
+    - id: 3
+      key: review
+      name: Review
+      position: 3
+      agents:
+        trigger: auto
+        start: [security, tests]
+        lead: {persona: kakashi-hatake, command: okt-task-review, brief: "You run after every member finished. Read each member's review-<key> comment, then post one verdict comment tagged review-lead for the commit under review now (an earlier verdict on an older commit does not count), and one comment tagged boundary filled from comment-boundary with the members' input-class results. If any finding blocks, move the task back to dev with the findings in the verdict (okt move <id> --to dev); otherwise move it to docs (okt move <id> --to docs)."}
+        members:
+          - {key: security, persona: kakashi-hatake, command: okt-task-secure, brief: "Security only; apply equivalence partitioning and boundary value analysis to every external input. Post exactly one comment tagged review-security."}
+          - {key: tests, persona: sakura-haruno, command: okt-task-check, brief: "Test coverage only; check that tests cover the equivalence classes and boundary values of every external input. Post exactly one comment tagged review-tests."}
+      permissions:
+        comment:
+          edit: {allow: true}
+    - id: 5
+      key: docs
+      name: Documentation
+      position: 4
+      agents:
+        trigger: auto
+        start: [documenter]
+        lead: {persona: iruka-umino, command: okt-task-commit, brief: "You run after the documenter. Commit any uncommitted work of the task in Conventional Commits, merge the task branch into main, then move the task to done (okt move <id> --to done)."}
+        members:
+          - {key: documenter, persona: shikamaru-nara, command: okt-task-document, brief: "Update the user-facing docs for what this task changed, commit them on the task branch, and post one comment tagged documentation (comment-documentation) and one tagged review-documenter."}
+      permissions:
+        comment:
+          edit: {allow: true}
+    - id: 4
+      key: done
+      name: Done
+      position: 5
+      permissions:
+        task:
+          delete: {allow: false}
+        comment:
+          delete: {allow: false}
+  transitions:
+    - from: 1
+      to: 2
+      guards:
+        - type: comments_tagged
+          count: 1
+          tag: self-branch
+          hint: ${{intl:guard.orchestra.dev.comments_tagged.self_branch.hint}}
+        - type: comments_tagged
+          count: 1
+          tag: scope
+          hint: Declare the task's scope first (okt template show comment-scope).
+        - type: blockers_in
+          buckets: [done]
+          hint: ${{intl:guard.orchestra.dev.blockers_in.hint}}
+        - {type: wave_gate, hint: '${{intl:guard.wave_gate.hint}}'}
+    - from: 2
+      to: 3
+      guards:
+        - type: comments_tagged
+          count: 1
+          tag: resume
+          hint: ${{intl:guard.orchestra.review.comments_tagged.resume.hint}}
+        - type: comments_tagged
+          count: 1
+          tag: tests-passing
+          hint: ${{intl:guard.orchestra.review.comments_tagged.tests_passing.hint}}
+        - {type: subtasks_complete, hint: '${{intl:guard.subtasks_complete.hint}}'}
+    - from: 3
+      to: 5
+      guards:
+        - type: comments_tagged
+          count: 1
+          tag: boundary
+          hint: Post the input-domain analysis of the change (okt template show comment-boundary).
+    - from: 5
+      to: 4
+      guards:
+        - type: comments_tagged
+          count: 1
+          tag: documentation
+          hint: ${{intl:guard.orchestra.done.comments_tagged.documentation.hint}}
+    - {from: 2, to: 1}
+    - {from: 3, to: 1}
+    - {from: 3, to: 2}
+    - {from: 5, to: 2}
+    - {from: 5, to: 3}
+    - {from: 4, to: 5}
+    - {from: 4, to: 3}
+    - {from: 4, to: 2}
+    - {from: 4, to: 1}
+  plans:
+    start:
+      guards:
+        - {type: plan_comments_tagged, tag: decomposition, hint: "Post the plan's module map first (okt template show comment-decomposition; okt comment add --scope plan --plan <slug> -T decomposition)."}
+        - {type: plan_comments_tagged, tag: council, hint: "Post the council decisions first (okt template show comment-council; okt comment add --scope plan --plan <slug> -T council)."}
+    complete:
+      guards:
+        - {type: plan_comments_tagged, tag: review-auditor, hint: "The plan auditor posts this; wait for it and retry the move."}
+    agents:
+      - {key: auditor, persona: kakashi-hatake, command: okt-audit, timeout: 45m, brief: "Audit the whole plan against its goal."}
+  operations:
+    archive:
+      guards:
+        - type: comments_tagged
+          count: 1
+          tag: documentation
+          hint: ${{intl:guard.common.archive.comments_tagged.documentation.hint}}
+  defaults:
+    task:
+      edit: {allow: false}
+      delete: {allow: false}
+    comment:
+      edit: {allow: false}
+      delete: {allow: false}

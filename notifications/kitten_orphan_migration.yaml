@@ -1,0 +1,90 @@
+# Identity ------------------------------------------------------------
+name: kitten_orphan_migration
+description: "${{intl:notifications.kitten_orphan_migration.description}}"
+
+# Geometry ------------------------------------------------------------
+size:
+  width: 50
+  height: 25
+
+# Behaviour flags -----------------------------------------------------
+# auto_height=false keeps the card pinned to size.width/size.height so the
+# action buttons sit at predictable positions; the other kitten_* cards use
+# the same convention.
+auto_height: false
+padding_inside: true
+footer_visible: true
+footer_position: center
+
+# Background + chrome -------------------------------------------------
+background: transparent
+style: rounded
+border:
+  visible: true
+  width: 1
+  color: $theme.primary
+  background: transparent
+
+# Inner padding -------------------------------------------------------
+padding:
+  top: 1
+  right: 2
+  bottom: 1
+  left: 2
+
+# Placement on the terminal grid -------------------------------------
+position: center
+
+# Bubble + tail -------------------------------------------------------
+bubble:
+  tail_side: bottom
+
+# Animation -----------------------------------------------------------
+frame_interval_ms: 900
+animation:
+  - frame: 0
+    value: |2
+
+           /\__/\
+          ( o o  )
+          (  ?   )
+
+  - frame: 1
+    value: |2
+
+           /\__/\
+          ( - -  )
+          (  ?   )
+
+  - frame: 2
+    value: |2
+
+           /\__/\
+          ( o o  )
+          (  ?   )
+
+# Bubble text ---------------------------------------------------------
+typing_ms_per_char: 0
+
+# Dismiss -------------------------------------------------------------
+# `esc` is the implicit cancel; pressing it dismisses without running
+# either action. The mode stays `key` (no auto-timeout) so the user
+# must choose explicitly.
+dismiss:
+  mode: key
+  keys: [esc]
+
+# Actions -------------------------------------------------------------
+# `command` is left empty: the TUI intercepts the ActionMsg by slug
+# (kitten_orphan_migration) and invokes operation.Service.MigrateOrphans
+# in-process against the ProjectRuntime already held by the model —
+# same facade contract as CLI orphans.migrate / the CLI preview path,
+# without the DispatchCommand re-open of the SQLite handle. Pressing
+# `s` dismisses with no side effect — the user can re-trigger later.
+actions:
+  - key: m
+    id: migrate
+    label: "${{intl:notifications.kitten_orphan_migration.migrate_label}}"
+  - key: s
+    id: skip
+    label: "${{intl:notifications.kitten_orphan_migration.skip_label}}"
